@@ -17,10 +17,10 @@
       <a class="nav-link" href="#">Home</a>
     </div>
     <div class="nav-item justify-content-start">
-      <a class="nav-link" id="viewhighscores" href="#">View Highscores</a>
+      <a class="nav-link" id="viewhighscores" href="">View Highscores</a>
     </div>
     <span class="navbar-text">
-      Timer: <span id="timer">45</span>'s
+      Timer: <span id="timer">60</span>'s
     </span>
     </div>
   </nav>
@@ -34,15 +34,35 @@
 
     <div id="game" class="hide">
       <h6 id="question"> </h6>
-      <div id="choices">
-      </div>
+      <div id="choices"></div>
       <div id="alert"></div>
     </div>
 
+    <div id="closing">
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Player</label>
+              <input type="" class="form-control" id="InputInitials" aria-describedby="emailHelp" placeholder="Enter your initials">
+            </div>
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+          
+    
+    <!-- <button onclick="submit" type="button">Submit</button>
+  <script  type="text/javascript">
+    function store(){
+       var inputEmail= document.getElementById("closing");
+       localStorage.setItem("initials", closing.value); -->
+      
+  </script>
+    </form>
+    </div>
   </div>
 
-
+  
+  
   <script src="questions.js"></script>
+
+
   <script src="./script.js"></script>
 </body>
 

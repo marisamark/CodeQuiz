@@ -4,7 +4,7 @@ var timer = document.getElementById("timer");
 var timerId, timerId2;
 var start;
 var seconds;
-var timeLeft = 45;
+var timeLeft = 60;
 var score = 0;
 var currentQuestion = 0;
 var title;
@@ -12,8 +12,18 @@ var chocies;
 var answer;
 var alert = document.getElementById("alert");
 var landingDiv = document.getElementById("landing");
-var gameDiv = document.getElementById("game")
+var gameDiv = document.getElementById("game");
+var closingDiv = document.getElementById("closing");
+
+
 //  * Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
+
+
+function highscoreform () {
+  closingDiv.setAttribute("class", "hide");
+}
+highscoreform();
+
 
 document.getElementById('start').addEventListener("click", start);
 
@@ -23,6 +33,7 @@ function start() {
   createButtons();
   timerId = startTimer(1, "timer", timerId);
 }
+
 
 function createButtons() {
   let question = questions[currentQuestion];
@@ -48,13 +59,17 @@ function createButtons() {
 }
 function answerClick() {
   if (currentQuestion === questions.length) {
-    return wereDone();
+  
+    gameDiv.setAttribute("class", "hide");  
+    closingDiv.removeAttribute("class","hide");
+      return wereDone();
   }
 
+  
   if (this.value === questions[currentQuestion].answer) {
-    AdvanceGame(true, "Correct!")
+    AdvanceGame(true, "Correct!");
   } else {
-    AdvanceGame(false, "Wrong!")
+    AdvanceGame(false, "Wrong!");
   }
 }
 
@@ -63,13 +78,12 @@ function AdvanceGame(isCorrect, text) {
     score++;
   } else {
     score--
-    timeLeft -= 15;
+    timeLeft -= 5;
   }
   alert.textContent = text;
   currentQuestion++;
   createButtons();
 }
-
 
 function wereDone() {
 }
@@ -89,10 +103,22 @@ function startTimer(val, id, intervalId) {
     document.getElementById(id).innerHTML = timeLeft;
 
     //Notfiy player that there is no time left, move onto next question, stop quiz.
-    if (timeLeft === 0) {
+    if (timeLeft === 0 || currentQuestion === questions.length) {
       clearInterval(timerId);
       document.getElementById(id).innerHTML = "Time's Up!";
     }
   }, val * 1000);
   return intervalId;
 }
+
+
+
+
+function playerscores() {
+
+  localStorage.setItem("player", getElementById("InputInitials"));
+  document.getElementById('submit').addEventListener("click", submit);
+}
+
+playerscores();
+
